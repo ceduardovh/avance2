@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes</title>
+    <link rel="icon" href="icono.jpg" type="image/jpeg">
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor del logo */
+        .logo-container {
+            text-align: center; /* Centra el contenido dentro del contenedor */
+            margin-top: 30px; /* Ajusta el margen superior para posicionarlo */
+        }
+
+        .logo-container img {
+            width: 157.82px; /* Tamaño del logo */
+            height: 68.22px;
+            margin: 0 auto; /* Asegura que la imagen esté centrada dentro del contenedor */
+            display: block; /* Para que el `margin: auto` funcione correctamente */
+        }
+
+        /* Estilos del formulario */
+        .form-container {
+            text-align: center; /* Centra el contenido del formulario */
+            margin: 20px auto; /* Espaciado en la parte superior e inferior */
+        }
+
+        select {
+            padding: 10px; /* Espaciado interno del select */
+            width: 200px; /* Ancho del select */
+            border-radius: 5px; /* Bordes redondeados */
+            border: 1px solid #ccc; /* Borde del select */
+            margin-bottom: 10px; /* Espacio debajo del select */
+        }
+
+        .next-button {
+            padding: 10px 20px; /* Espaciado del botón */
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            display: block; /* Para centrar el botón */
+            margin: 0 auto; /* Para centrar el botón */
+        }
+
+        .next-button:hover {
+            background-color: #45a049; /* Color de fondo al pasar el cursor */
+        }
+
+        .otros-servicios {
+            display: none; /* Oculta por defecto */
+            text-align: left; /* Alinea el texto a la izquierda */
+            margin-top: 20px; /* Espaciado superior */
+        }
+    </style>
+    <script>
+        function mostrarFormulario() {
+            var servicioSeleccionado = document.getElementById("tipo-servicio").value;
+            var formularioMaritimo = document.getElementById("formulario-maritimo");
+            var formularioTerrestre = document.getElementById("formulario-terrestre");
+            var otrosServicios = document.getElementById("otros-servicios");
+
+            // Oculta todos los formularios inicialmente
+            formularioMaritimo.style.display = "none";
+            formularioTerrestre.style.display = "none";
+            otrosServicios.style.display = "none"; // Oculta la sección de otros servicios
+
+            if (servicioSeleccionado === "Maritimo") {
+                formularioMaritimo.style.display = "block"; // Muestra el formulario marítimo
+            } else if (servicioSeleccionado === "Terrestre") {
+                formularioTerrestre.style.display = "block"; // Muestra el formulario terrestre
+            } else if (servicioSeleccionado === "Otro") {
+                otrosServicios.style.display = "block"; // Muestra la sección de otros servicios
+            }
+        }
+
+        function mostrarContenedor() {
+            var tipoContenedorSeleccionado = document.getElementById("tipo-contenedor").value;
+            var opcionesContenedor = document.getElementById("opciones-contenedor");
+
+            // Muestra u oculta las opciones de contenedor según la selección
+            if (tipoContenedorSeleccionado) {
+                opcionesContenedor.style.display = "block"; // Muestra las opciones de contenedor
+            } else {
+                opcionesContenedor.style.display = "none"; // Oculta si no se selecciona nada
+            }
+
+            // Cambia las opciones del tamaño de contenedor
+            var tamañoContenedor = document.getElementById("tamaño-contenedor");
+            tamañoContenedor.innerHTML = ""; // Limpia las opciones existentes
+
+            if (tipoContenedorSeleccionado === "Open Top") {
+                tamañoContenedor.innerHTML += "<option value='Contenedor 20\'>Contenedor 20'</option>";
+                tamañoContenedor.innerHTML += "<option value='Contenedor 40\'>Contenedor 40'</option>";
+            } else if (tipoContenedorSeleccionado) {
+                tamañoContenedor.innerHTML += "<option value='Contenedor'>Contenedor</option>";
+                tamañoContenedor.innerHTML += "<option value='High Cube Dry'>High Cube Dry</option>";
+                tamañoContenedor.innerHTML += "<option value='Reefer'>Reefer</option>";
+                tamañoContenedor.innerHTML += "<option value='Flat Rack'>Flat Rack</option>";
+                tamañoContenedor.innerHTML += "<option value='Plataforma'>Plataforma</option>";
+                tamañoContenedor.innerHTML += "<option value='GOH'>GOH</option>";
+            }
+        }
+
+        function mostrarFleteTerrestre() {
+            var fleteSeleccionado = document.getElementById("tipo-flete").value;
+            var opcionesCajaSeca = document.getElementById("opciones-caja-seca");
+            var opcionesPlataforma = document.getElementById("opciones-plataforma");
+            var opcionesEquiposEspeciales = document.getElementById("opciones-equipos-especiales");
+            var opcionesOtros = document.getElementById("opciones-otros");
+
+            // Oculta todas las opciones de flete inicialmente
+            opcionesCajaSeca.style.display = "none";
+            opcionesPlataforma.style.display = "none";
+            opcionesEquiposEspeciales.style.display = "none";
+            opcionesOtros.style.display = "none";
+
+            if (fleteSeleccionado === "Caja Seca") {
+                opcionesCajaSeca.style.display = "block"; // Muestra las opciones de Caja Seca
+            } else if (fleteSeleccionado === "Plataforma") {
+                opcionesPlataforma.style.display = "block"; // Muestra las opciones de Plataforma
+            } else if (fleteSeleccionado === "Equipos Especiales") {
+                opcionesEquiposEspeciales.style.display = "block"; // Muestra las opciones de Equipos Especiales
+            } else if (fleteSeleccionado === "Otros") {
+                opcionesOtros.style.display = "block"; // Muestra las opciones de Otros
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Contenedor para el logo en la parte superior -->
+    <div class="logo-container">
+        <img src="logo2.png" alt="Logo">
+    </div>
+
+    <!-- Formulario para tipo de servicio -->
+    <div class="form-container">
+        <h2>Tipo de servicio</h2>
+        <select id="tipo-servicio" onchange="mostrarFormulario()">
+            <option value="">Seleccione Servicio</option>
+            <option value="Maritimo">Maritimo</option>
+            <option value="Aereo">Aéreo</option>
+            <option value="Terrestre">Terrestre</option>
+            <option value="Otro">Otro</option>
+        </select>
+
+        <!-- Formulario Marítimo -->
+        <div id="formulario-maritimo" style="display: none;">
+            <h2>Tipo de contenedor</h2>
+            <select id="tipo-contenedor" onchange="mostrarContenedor()">
+                <option value="">Seleccione Contenedor</option>
+                <option value="Contenedor">Contenedor</option>
+                <option value="High Cube Dry">High Cube Dry</option>
+                <option value="Reefer">Reefer</option>
+                <option value="Open Top">Open Top</option>
+                <option value="Flat Rack">Flat Rack</option>
+                <option value="Plataforma">Plataforma</option>
+                <option value="GOH">GOH</option>
+            </select>
+            
+            <div id="opciones-contenedor" style="display: none;">
+                <h2>Tamaño de Contenedor</h2>
+                <select id="tamaño-contenedor">
+                    <option value="">Seleccione Tamaño</option>
+                    <!-- Opciones se llenan mediante JavaScript -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Formulario Terrestre -->
+        <div id="formulario-terrestre" style="display: none;">
+            <h2>Tipo de Flete</h2>
+            <select id="tipo-flete" onchange="mostrarFleteTerrestre()">
+                <option value="">Seleccione Flete</option>
+                <option value="Caja Seca">Caja Seca</option>
+                <option value="Plataforma">Plataforma</option>
+                <option value="Equipos Especiales">Equipos Especiales</option>
+                <option value="Otros">Otros</option>
+            </select>
+
+            <div id="opciones-caja-seca" style="display: none;">
+                <h2>Opciones Caja Seca</h2>
+                <select>
+                    <option value="">Seleccione Opción</option>
+                    <option value="Remolque 40'">Remolque 40'</option>
+                    <option value="Remolque 53'">Remolque 53'</option>
+                    <option value="Remolque 48'">Remolque 48'</option>
+                    <option value="Torton 5T">Torton 5T</option>
+                    <option value="Rabon 3T">Rabon 3T</option>
+                    <option value="1 TON">1 TON</option>
+                    <option value="Consolidad (LTL)">Consolidad (LTL)</option>
+                    <option value="Auto Cargo">Auto Cargo</option>
+                </select>
+            </div>
+
+            <div id="opciones-plataforma" style="display: none;">
+                <h2>Opciones Plataforma</h2>
+                <select>
+                    <option value="">Seleccione Opción</option>
+                    <option value="Remolque 40'">Remolque 40'</option>
+                    <option value="Remolque 53'">Remolque 53'</option>
+                    <option value="Remolque 48'">Remolque 48'</option>
+                    <option value="Torton 5T">Torton 5T</option>
+                    <option value="Rabon 3T">Rabon 3T</option>
+                    <option value="Camioneta">Camioneta</option>
+                </select>
+            </div>
+
+            <div id="opciones-equipos-especiales" style="display: none;">
+                <h2>Opciones Equipos Especiales</h2>
+                <select>
+                    <option value="">Seleccione Opción</option>
+                    <option value="Lowboy">Lowboy</option>
+                    <option value="Semi Lowboy">Semi Lowboy</option>
+                    <option value="Lowboy con cuello desmontable">Lowboy con cuello desmontable</option>
+                    <option value="Lowboy con ejes expansibles">Lowboy con ejes expansibles</option>
+                    <option value="Plataforma expandible">Plataforma expandible</option>
+                    <option value="Encortinado">Encortinado</option>
+                    <option value="Modular">Modular</option>
+                    <option value="Contenedor 20'">Contenedor 20'</option>
+                    <option value="Contenedor 40'">Contenedor 40'</option>
+                </select>
+            </div>
+
+            <div id="opciones-otros" style="display: none;">
+                <h2>Opciones Otros</h2>
+                <select>
+                    <option value="">Seleccione Opción</option>
+                    <option value="Hazmat">Hazmat</option>
+                    <option value="Casa Thermo">Casa Thermo</option>
+                    <option value="Tolvas">Tolvas</option>
+                    <option value="Jaulas">Jaulas</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Sección Otros Servicios -->
+<div id="otros-servicios" class="otros-servicios" style="text-align: center; margin-top: 20px;">
+    <h2>Otros Servicios</h2>
+    <select>
+        <option value="">Seleccione Otros servicios</option>
+        <option value="Carga Proyecto">Carga Proyecto</option>
+        <option value="Intermodal">Intermodal</option>
+        <option value="Gruas">Grúas</option>
+        <option value="Custodias">Custodias</option>
+        <option value="Cruce Fronterizo">Cruce Fronterizo</option>
+        <option value="Control de inventario">Control de inventario</option>
+        <option value="Seguros">Seguros</option>
+        <option value="Hand Carry">Hand Carry</option>
+        <option value="Servicios Aduanales">Servicios Aduanales</option>
+        <option value="Servicios Comerciales">Servicios Comerciales</option>
+    </select>
+</div>
+
+
+</body>
+</html>
